@@ -175,8 +175,19 @@ def play(game, x_player, o_player, print_game=True):
 
 
 
+#if __name__ == '__main__':
+#    x_player = HumanPlayer('X')
+#    o_player = SmartComputerPlayer('O')
+#    t = TicTacToe()
+#    play(t, x_player, o_player, print_game=True)
+
 if __name__ == '__main__':
-    x_player = HumanPlayer('X')
-    o_player = SmartComputerPlayer('O')
-    t = TicTacToe()
-    play(t, x_player, o_player, print_game=True)
+    while True:
+        x_player = HumanPlayer('X')
+        o_player = SmartComputerPlayer('O')
+        t = TicTacToe()
+        play(t, x_player, o_player, print_game=True)
+
+        restart = input("Do you want to play again? (yes/no): ")
+        if restart.lower() != 'yes':
+            break
