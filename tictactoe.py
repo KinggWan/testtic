@@ -1,3 +1,6 @@
+#Author: Jordan Wan
+#Date: 6/7/2023
+#Assignment 1:TIC-TAC-TOE with Adversarial Search(MINIMAX)
 import math
 import random
 import time
