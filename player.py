@@ -142,7 +142,6 @@ class TicTacToe():
     def available_moves(self):
         return [i for i, x in enumerate(self.board) if x == " "]
 
-
 def play(game, x_player, o_player, print_game=True):
 
     if print_game:
@@ -172,16 +171,6 @@ def play(game, x_player, o_player, print_game=True):
     if print_game:
         print('It\'s a tie!')
 
-def play_again():
-    while True:
-        choice = input("Do you want to play tic-tac-toe again? (yes/no): ").lower()
-        if choice == "yes":
-            play(t, x_player, o_player, print_game=True)
-        elif choice == "no":
-            print("Thank you for playing tic-tac-toe!")
-            break
-        else:
-            print("Invalid choice. Please enter 'yes' or 'no'.")
 
 
 
@@ -191,4 +180,3 @@ if __name__ == '__main__':
     o_player = SmartComputerPlayer('O')
     t = TicTacToe()
     play(t, x_player, o_player, print_game=True)
-    play_again()
