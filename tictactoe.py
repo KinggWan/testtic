@@ -66,10 +66,12 @@ class SmartComputerPlayer(Player):
         else:
             best = {'position': None, 'score': math.inf}  # each score should minimize
         for possible_move in state.available_moves():
+            #step 1: make a move, try that spot
             state.make_move(possible_move, player)
-            sim_score = self.minimax(state, other_player)  # simulate a game after making that move
+            #step 2: recurse using minimax to simulate a game after making that move
+            sim_score = self.minimax(state, other_player)  # simulate a game after making that move(we alternate players)
 
-            # undo move
+            # step 3: undo move
             state.board[possible_move] = ' '
             state.current_winner = None
             sim_score['position'] = possible_move  # this represents the move optimal next move
@@ -166,6 +168,7 @@ def play(game, x_player, o_player, print_game=True):
                 return letter  # ends the loop and exits the game
             letter = 'O' if letter == 'X' else 'X'  # switches player
 
+        
         time.sleep(.8)
 
     if print_game:
@@ -173,11 +176,30 @@ def play(game, x_player, o_player, print_game=True):
 
 if __name__ == '__main__':
     while True:
-        x_player = HumanPlayer('X')
-        o_player = SmartComputerPlayer('O')
+        x_player = HumanPlayer('X')             #setting human player as X
+        o_player = SmartComputerPlayer('O')     #AI as O
         t = TicTacToe()
         play(t, x_player, o_player, print_game=True)
 
-        restart = input("Do you want to play again? (yes/no): ")
+        restart = input("Do you want to play again? (yes/no): ")    #prompts user if they want to play again
         if restart.lower() != 'yes':
             break
+
+#THIS WAS FOR TESTING THE CODE AGAINST RANDOM CHOICES TO SEE PERFORMANCE
+# if __name__ == '__main__':
+#     x_wins = 0
+#     o_wins = 0
+#     ties = 0
+#     for _ in range(1000):
+#         x_player = RandomComputerPlayer('X')             #setting human player as X
+#         o_player = SmartComputerPlayer('O')     #AI as O
+#         t = TicTacToe()
+#         result = play(t, x_player, o_player, print_game=False)
+#         if result == 'X':
+#             x_wins += 1
+#         elif result == 'O':
+#             o_wins += 1
+#         else:
+#             ties += 1
+    
+#     print(f'After 1000 iterations, we see {x_wins} X wins, {o_wins} O wins, and {ties} ties')
